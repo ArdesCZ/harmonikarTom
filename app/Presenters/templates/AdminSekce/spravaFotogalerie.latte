@@ -1,0 +1,113 @@
+{block content}
+    <style>
+        .gallery {
+
+        }
+
+        .gallery img {
+            width: 250px;
+            height: 215px;
+            padding: 5px;
+            transition: 1s;
+        }
+
+        @media only screen and (max-width: 700px) {
+            .gallery {
+                display: block;
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            #img {
+                width: 240px;
+                height: 215px;
+            }
+        }
+    </style>
+
+
+    <div class="container" style="min-height: 350pt">
+        <br/>
+        <div class="text-center">
+            <h2 style="font-family: Georgia;">Správa fotogalerie</h2>
+        </div>
+
+        {foreach $flashes as $flash}
+            <div class="flash {$flash->type} font-weight-bold text-success text-center"><h5
+                        class="font-weight-bold">{$flash->message}</h5></div>
+        {/foreach}
+
+
+        <!-- Modal (vyskakující okno) pro smazání zvolené fotografie -->
+        <div class="modal" tabindex="-1" id="smazModalFotogalerie" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title"><strong>Smazání vybrané fotografie</strong></h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body text-center">
+                        <p><h4 class="text-danger">Varování,</h4> opravdu si přeješ smazat tuto fotografii?</p>
+                    </div>
+
+                    <form n:name="formVymazFotogalerie">
+                        <div class="form-group">
+                            <input n:name="idFotografieV" type="hidden" id="idFotogalerieV" class="form-control">
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Zavřít</button>
+                            <button n:name="odeslatV" class="btn btn-danger">Smazat fotografii</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div><!-- /Modal smaž  -->
+
+        <!-- Formulář pro nahrání nové fotografie začátek -->
+        <form n:name="formVlozFotogalerie" class="form-inline bg-light border border-dark" enctype="multipart/form-data">
+
+            <div class="form-group mb-1 mx-sm-3">
+                <label n:name="popisek">Popisek:* &nbsp;</label>
+                <input n:name="popisek" class="form-control">
+            </div>
+            <div class="form-group mb-1 mx-sm-3">
+                <input n:name="file" type="file" class="form-control-file">
+            </div>
+            <div class="form-group mb-1 mx-sm-2">
+                <button n:name="odeslat" type="submit" class="btn btn-primary mb-2">Uložit fotografii</button>
+            </div>
+        </form> <!-- Formulář pro nahrání nové fotografie konec -->
+        <br/>
+
+        <div class="gallery" > <!-- Výpis fotogalerie začátek -->
+            <div class="row row-cols-1 row-cols-md-3">
+                {foreach $adminSekce as $foto}
+                    <div class="col mb-4">
+                        <div class="card text-center bg-light gallery" style="width: 18rem;">
+                            <div id="{$foto->idFotografie}" class="col">
+                                <a href="{$basePath}/fotoGalerie/fotky/{$foto->nazev}" data-lightbox="mygallery"
+                                   data-title="{$foto->popisek}">
+                                    <img src="{$basePath}/fotoGalerie/fotky/{$foto->nazev}" class="card-img-top" id="img"></a>
+                                <div class="card-body">
+
+                                    <button type="button" class="btn btn-danger btn-block"
+                                            data-id="{$foto->idFotografie}"
+                                            data-role="deleteFotogalerie" data-toggle="modal"
+                                            data-target="#smazModalFotogalerie" id="odeslatV"><i
+                                                class="far fa-trash-alt"></i></button>
+                                </div>
+                                <br/>
+                            </div>
+                        </div>
+                    </div>
+                {/foreach}
+            </div>
+        </div> <!-- Výpis fotogalerie konec -->
+
+
+        <br/>
+    </div>
+
+{/block}

@@ -1,0 +1,7 @@
+Sem by se ukládala videa
+a následně by vše probíhalo jako v případě fotografií:
+    - databázová tabulka s idčkem a názvem videa
+    - přesun souboru do složky videa
+    - uděláná stránka Správa videa v admin sekci
+    - výpis videí s tlačítkem pro smazání
+    - java scirpt pro modal výmaz videa

@@ -1,0 +1,313 @@
+{block content}
+    <style>
+        @media only screen and (max-width: 700px) {
+            .hidden {
+                display: none;
+            }
+
+            #textVystoupeniM {
+                font-size: 18px;
+            }
+        }
+    </style>
+
+    <div class="container" style="min-height: 450pt">
+        <br/>
+        <div class="text-center">
+            <h2 style="font-family: Georgia;">Výpis vystoupení</h2>
+        </div>
+
+        {if ($tokenV2 == true)}
+            <span class="text-left">
+                <h3 style="font-family: Georgia;">Rok {$rokL2} </h3>
+            </span>
+
+            {if ($tokenR2 == true)}
+                <span class="text-left">
+                <h4 style="font-family: Georgia;">Rezervace </h4>
+            </span>
+
+                <table class="table table-bordered table-hover" data-toggle="table" data-pagination="true"
+                       data-search="true"
+                       data-page-size="15" style="font-size: 21px;">
+                    <thead class="thead-light">
+                    <tr>
+                        <th class="hidden" style="width: 10%" scope="col">Rok</th>
+                        <th style="width: 10%" scope="col">Od</th>
+                        <th style="width: 30%" scope="col">Do</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+
+                    {foreach $rezervaceL2 as $rezervace}
+                        <tr>
+                            <td class="hidden">{$rezervace->rok}</td>
+                            <td>{$rezervace->od}</td>
+                            <td>{$rezervace->do}</td>
+                        </tr>
+                    {/foreach}
+                    </tbody>
+                    <tfoot class="thead-light">
+                    {* patička tabulky musí být prázdná, nebo by se nezobrazil spodek tabulky *}
+                    </tfoot>
+                </table>
+
+                <br/>
+            {/if}
+
+            <span class="text-left">
+                <h4 style="font-family: Georgia;">Vystoupení </h4>
+            </span>
+
+            <table class="table table-bordered table-hover" data-toggle="table" data-pagination="true"
+                   data-search="true"
+                   data-page-size="15" style="font-size: 21px;">
+                <thead class="thead-light">
+                <tr>
+                    <th class="hidden" style="width: 10%" scope="col">Rok</th>
+                    <th style="width: 10%" scope="col">Datum</th>
+                    <th style="width: 30%" scope="col">Místo</th>
+                    <th style="width: 10%" scope="col">Čas</th>
+                </tr>
+                </thead>
+                <tbody>
+
+                {foreach $vystoupeniL2 as $konzert}
+                    <tr>
+                        <td class="hidden">{$konzert->rok}</td>
+                        <td>{$konzert->datum}</td>
+                        <td>{$konzert->misto}</td>
+                        <td>{$konzert->cas}</td>
+                    </tr>
+                {/foreach}
+                </tbody>
+                <tfoot class="thead-light">
+                {* patička tabulky musí být prázdná, nebo by se nezobrazil spodek tabulky *}
+                </tfoot>
+            </table>
+
+            <br/>
+        {/if}
+
+        {if ($tokenV1 == true)}
+            <span class="text-left">
+                <h3 style="font-family: Georgia;">Rok {$rokL1} </h3>
+            </span>
+
+            {if ($tokenR1 == true)}
+                <span class="text-left">
+                <h4 style="font-family: Georgia;">Rezervace </h4>
+            </span>
+                <table class="table table-bordered table-hover" data-toggle="table" data-pagination="true"
+                       data-search="true"
+                       data-page-size="15" style="font-size: 21px;">
+                    <thead class="thead-light">
+                    <tr>
+                        <th class="hidden" style="width: 10%" scope="col">Rok</th>
+                        <th style="width: 10%" scope="col">Od</th>
+                        <th style="width: 30%" scope="col">Do</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+
+                    {foreach $rezervaceL1 as $rezervace}
+                        <tr>
+                            <td class="hidden">{$rezervace->rok}</td>
+                            <td>{$rezervace->od}</td>
+                            <td>{$rezervace->do}</td>
+                        </tr>
+                    {/foreach}
+                    </tbody>
+                    <tfoot class="thead-light">
+                    {* patička tabulky musí být prázdná, nebo by se nezobrazil spodek tabulky *}
+                    </tfoot>
+                </table>
+
+                <br/>
+            {/if}
+
+            <span class="text-left">
+                <h4 style="font-family: Georgia;">Vystoupení </h4>
+            </span>
+
+            <table class="table table-bordered table-hover" data-toggle="table" data-pagination="true"
+                   data-search="true"
+                   data-page-size="15" style="font-size: 21px;">
+                <thead class="thead-light">
+                <tr>
+                    <th class="hidden" style="width: 10%" scope="col">Rok</th>
+                    <th style="width: 10%" scope="col">Datum</th>
+                    <th style="width: 30%" scope="col">Místo</th>
+                    <th style="width: 10%" scope="col">Čas</th>
+                </tr>
+                </thead>
+                <tbody>
+
+                {foreach $vystoupeniL1 as $konzert}
+                    <tr>
+                        <td class="hidden">{$konzert->rok}</td>
+                        <td>{$konzert->datum}</td>
+                        <td>{$konzert->misto}</td>
+                        <td>{$konzert->cas}</td>
+                    </tr>
+                {/foreach}
+                </tbody>
+                <tfoot class="thead-light">
+                {* patička tabulky musí být prázdná, nebo by se nezobrazil spodek tabulky *}
+
+                </tfoot>
+            </table>
+
+            <br/>
+        {/if}
+
+        <span class="text-left">
+                <h3 style="font-family: Georgia;">Rok {$rokL} </h3>
+        </span>
+
+        <span class="text-left">
+                <h4 style="font-family: Georgia;">Rezervace </h4>
+            </span>
+
+        <table class="table table-bordered table-hover" data-toggle="table" data-pagination="true"
+               data-search="true"
+               data-page-size="15" style="font-size: 21px;">
+            <thead class="thead-light">
+            <tr>
+                <th class="hidden" style="width: 10%" scope="col">Rok</th>
+                <th style="width: 10%" scope="col">Od</th>
+                <th style="width: 30%" scope="col">Do</th>
+            </tr>
+            </thead>
+            <tbody>
+
+            {foreach $rezervaceL as $rezervace}
+                <tr>
+                    <td class="hidden">{$rezervace->rok}</td>
+                    <td>{$rezervace->od}</td>
+                    <td>{$rezervace->do}</td>
+                </tr>
+            {/foreach}
+            </tbody>
+            <tfoot class="thead-light">
+            {* patička tabulky musí být prázdná, nebo by se nezobrazil spodek tabulky *}
+            </tfoot>
+        </table>
+
+        <br/>
+        <span class="text-left">
+                <h4 style="font-family: Georgia;">Vystoupení </h4>
+            </span>
+
+        <table class="table table-bordered table-hover" data-toggle="table" data-pagination="true"
+               data-search="true"
+               data-page-size="15" style="font-size: 21px;">
+            <thead class="thead-light">
+            <tr>
+                <th class="hidden" style="width: 10%" scope="col">Rok</th>
+                <th style="width: 10%" scope="col">Datum</th>
+                <th style="width: 30%" scope="col">Místo</th>
+                <th style="width: 10%" scope="col">Čas</th>
+            </tr>
+            </thead>
+            <tbody>
+
+            {foreach $vystoupeniL as $konzert}
+                <tr>
+                    <td class="hidden">{$konzert->rok}</td>
+                    <td>{$konzert->datum}</td>
+                    <td>{$konzert->misto}</td>
+                    <td>{$konzert->cas}</td>
+                </tr>
+            {/foreach}
+            </tbody>
+            <tfoot class="thead-light">
+            {* patička tabulky musí být prázdná, nebo by se nezobrazil spodek tabulky *}
+            </tfoot>
+        </table>
+
+        <br/>
+
+        {* Rok 2019 není v databázi, proto až za rok ze objeví tabulka, ale bude vypisovat vystoupení roku 2020 *}
+        {if ($rokL > 2020)}
+
+        {if ($tokenVm1 == true)}
+            <span class="text-left">
+                <h3 style="font-family: Georgia;">Rok {$rokLm1} </h3>
+            </span>
+
+            {if ($tokenRm1 == true)}
+                <span class="text-left">
+                <h4 style="font-family: Georgia;">Rezervace </h4>
+            </span>
+                <table class="table table-bordered table-hover" data-toggle="table" data-pagination="true"
+                       data-search="true"
+                       data-page-size="15" style="font-size: 21px;">
+                    <thead class="thead-light">
+                    <tr>
+                        <th class="hidden" style="width: 10%" scope="col">Rok</th>
+                        <th style="width: 10%" scope="col">Od</th>
+                        <th style="width: 30%" scope="col">Do</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+
+                    {foreach $rezervaceLm1 as $rezervace}
+                        <tr>
+                            <td class="hidden">{$rezervace->rok}</td>
+                            <td>{$rezervace->od}</td>
+                            <td>{$rezervace->do}</td>
+                        </tr>
+                    {/foreach}
+                    </tbody>
+                    <tfoot class="thead-light">
+                    {* patička tabulky musí být prázdná, nebo by se nezobrazil spodek tabulky *}
+                    </tfoot>
+                </table>
+
+                <br/>
+            {/if}
+
+            <span class="text-left">
+                <h4 style="font-family: Georgia;">Vystoupení </h4>
+            </span>
+
+            <table class="table table-bordered table-hover" data-toggle="table" data-pagination="true"
+                   data-search="true"
+                   data-page-size="15" style="font-size: 21px;">
+                <thead class="thead-light">
+                <tr>
+                    <th class="hidden" style="width: 10%" scope="col">Rok</th>
+                    <th style="width: 10%" scope="col">Datum</th>
+                    <th style="width: 30%" scope="col">Místo</th>
+                    <th style="width: 10%" scope="col">Čas</th>
+                </tr>
+                </thead>
+                <tbody>
+
+                {foreach $vystoupeniLm1 as $konzert}
+                    <tr>
+                        <td class="hidden">{$konzert->rok}</td>
+                        <td>{$konzert->datum}</td>
+                        <td>{$konzert->misto}</td>
+                        <td>{$konzert->cas}</td>
+                    </tr>
+                {/foreach}
+                </tbody>
+                <tfoot class="thead-light">
+                {* patička tabulky musí být prázdná, nebo by se nezobrazil spodek tabulky *}
+                </tfoot>
+            </table>
+        {/if}
+        {/if}
+
+        <br/>
+        <h4 style="font-family: Georgia;" id="textVystoupeniM">V případě zavedení mimořádných opatření si vyhrazuji
+            právo měnit plánovaná
+            vystoupení.</h4>
+
+        <br/><br/>
+    </div>
+
+{/block}
+

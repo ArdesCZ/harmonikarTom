@@ -1,0 +1,50 @@
+{block content}
+
+<style>
+    .gallery {
+     
+    }
+
+    .gallery img {
+        width: 250px;
+        height: 215px;
+        padding: 5px;
+        transition: 1s;
+    }
+
+    .gallery img:hover {
+        transform: scale(1.07);
+    }
+
+    @media only screen and (max-width: 700px) {
+        .gallery {
+            text-align: center;
+        }
+
+        #img {
+            width: 240px;
+            height: 215px;
+        }
+    }
+</style>
+
+<br/>
+<div class="container" style="min-height: 450pt">
+    <h1 class="text-center" style="font-family: Georgia;">Fotogalerie</h1> <br/>
+
+    <div class="gallery">
+        <div class="row row-cols-1 row-cols-md-4">
+            {foreach $fotogalerie as $foto}
+                <div id="{$foto->idFotografie}" class="col">
+
+                    <a href="{$basePath}/fotoGalerie/fotky/{$foto->nazev}" data-lightbox="mygallery"
+                       data-title="{$foto->popisek}">
+                        <img src="{$basePath}/fotoGalerie/fotky/{$foto->nazev}" id="img"/></a>
+                </div>
+            {/foreach}
+        </div>
+    </div>
+
+    <br/>
+</div>
+

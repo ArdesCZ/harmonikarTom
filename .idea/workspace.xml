@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="c27c2f79-5ab9-4528-ab99-f2ba20f9fde1" name="Default Changelist" comment="" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ComposerSettings" doNotAsk="true" synchronizationState="SYNCHRONIZE">
+    <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
+    <execution>
+      <executable />
+    </execution>
+  </component>
+  <component name="PhpWorkspaceProjectConfiguration">
+    <include_path>
+      <path value="$PROJECT_DIR$/vendor/nette/finder" />
+      <path value="$PROJECT_DIR$/vendor/nette/http" />
+      <path value="$PROJECT_DIR$/vendor/nette/bootstrap" />
+      <path value="$PROJECT_DIR$/vendor/nette/schema" />
+      <path value="$PROJECT_DIR$/vendor/nette/neon" />
+      <path value="$PROJECT_DIR$/vendor/nette/mail" />
+      <path value="$PROJECT_DIR$/vendor/nette/robot-loader" />
+      <path value="$PROJECT_DIR$/vendor/nette/routing" />
+      <path value="$PROJECT_DIR$/vendor/nette/tester" />
+      <path value="$PROJECT_DIR$/vendor/nette/di" />
+      <path value="$PROJECT_DIR$/vendor/nette/application" />
+      <path value="$PROJECT_DIR$/vendor/composer" />
+      <path value="$PROJECT_DIR$/vendor/nette/database" />
+      <path value="$PROJECT_DIR$/vendor/nette/security" />
+      <path value="$PROJECT_DIR$/vendor/nette/caching" />
+      <path value="$PROJECT_DIR$/vendor/nette/php-generator" />
+      <path value="$PROJECT_DIR$/vendor/latte/latte" />
+      <path value="$PROJECT_DIR$/vendor/nette/utils" />
+      <path value="$PROJECT_DIR$/vendor/tracy/tracy" />
+      <path value="$PROJECT_DIR$/vendor/nette/forms" />
+      <path value="$PROJECT_DIR$/vendor/nette/component-model" />
+    </include_path>
+  </component>
+  <component name="ProjectId" id="1eX1MEjtpuYpbGqrZpzfJKQzTFx" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\xampp\htdocs\harmonikarT\app\Presenters" />
+      <recent name="C:\xampp\htdocs\harmonikarT\app\Presenters\templates" />
+      <recent name="C:\xampp\htdocs\harmonikarT\app\Presenters\templates\AdminSekce" />
+      <recent name="C:\xampp\htdocs\harmonikarT\app\Presenters\templates\Fotogalerie" />
+      <recent name="C:\xampp\htdocs\harmonikarT\app\Presenters\templates\Prihlaseni" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager">
+    <configuration name="RouterFactory.php" type="PhpLocalRunConfigurationType" factoryName="PHP Console" temporary="true" path="$PROJECT_DIR$/app/Router/RouterFactory.php">
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="PHP Script.RouterFactory.php" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration>C:\Users\admin\AppData\Roaming\Subversion</configuration>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="c27c2f79-5ab9-4528-ab99-f2ba20f9fde1" name="Default Changelist" comment="" />
+      <created>1594453073101</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1594453073101</updated>
+      <workItem from="1594453074286" duration="5471000" />
+      <workItem from="1594464987293" duration="10371000" />
+      <workItem from="1594620759696" duration="11815000" />
+      <workItem from="1594644813611" duration="5195000" />
+      <workItem from="1594728687313" duration="14837000" />
+      <workItem from="1594795348907" duration="10411000" />
+      <workItem from="1594807100193" duration="6000" />
+      <workItem from="1594808960218" duration="3052000" />
+      <workItem from="1594880060611" duration="11922000" />
+      <workItem from="1594897772248" duration="3716000" />
+      <workItem from="1594910252831" duration="3719000" />
+      <workItem from="1594993126441" duration="5699000" />
+      <workItem from="1595077402451" duration="10126000" />
+      <workItem from="1595161164826" duration="11895000" />
+      <workItem from="1595747259881" duration="6586000" />
+      <workItem from="1595771788328" duration="6521000" />
+      <workItem from="1595838046215" duration="5661000" />
+      <workItem from="1595859244732" duration="7170000" />
+      <workItem from="1595917003475" duration="22427000" />
+      <workItem from="1596177376952" duration="6855000" />
+      <workItem from="1596197994858" duration="9841000" />
+      <workItem from="1596260906294" duration="9718000" />
+      <workItem from="1596282640938" duration="4668000" />
+      <workItem from="1596372071648" duration="1218000" />
+      <workItem from="1596436705671" duration="15225000" />
+      <workItem from="1596465702065" duration="664000" />
+      <workItem from="1596468708757" duration="52000" />
+      <workItem from="1596469726898" duration="99000" />
+      <workItem from="1596469836993" duration="380000" />
+      <workItem from="1596470352738" duration="642000" />
+      <workItem from="1596518975259" duration="10666000" />
+      <workItem from="1596533244184" duration="10071000" />
+      <workItem from="1596552832591" duration="8911000" />
+      <workItem from="1596604140624" duration="7252000" />
+      <workItem from="1596616466085" duration="3696000" />
+      <workItem from="1596627026673" duration="10310000" />
+      <workItem from="1596694468566" duration="580000" />
+      <workItem from="1596714155223" duration="2745000" />
+      <workItem from="1596729247342" duration="595000" />
+      <workItem from="1596781096018" duration="1363000" />
+      <workItem from="1596783935174" duration="4560000" />
+      <workItem from="1596794201973" duration="11790000" />
+      <workItem from="1596875881071" duration="13435000" />
+      <workItem from="1597039794880" duration="6542000" />
+      <workItem from="1597989047800" duration="5468000" />
+      <workItem from="1598010545867" duration="4333000" />
+      <workItem from="1598613580394" duration="2459000" />
+      <workItem from="1601217811797" duration="592000" />
+      <workItem from="1601278273233" duration="10364000" />
+      <workItem from="1601304529516" duration="1921000" />
+      <workItem from="1601306807266" duration="218000" />
+      <workItem from="1601364232354" duration="596000" />
+      <workItem from="1601367281350" duration="2962000" />
+      <workItem from="1601380293249" duration="9779000" />
+      <workItem from="1601446434646" duration="7663000" />
+      <workItem from="1601464421396" duration="9300000" />
+      <workItem from="1601530674605" duration="5604000" />
+      <workItem from="1601541654561" duration="648000" />
+      <workItem from="1602596586197" duration="187000" />
+      <workItem from="1602761126933" duration="3000" />
+      <workItem from="1602761131903" duration="2000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+</project>

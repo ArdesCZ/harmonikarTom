@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head> <!-- head začátek -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+
+    <title>harmonikar-tom</title>
+    <link rel="icon" href="{$basePath}/favicon.ico"
+          type="image/ico"> {* odkaz na favicon {$basePath znamená cestu harmonikarT/www/} *}
+
+    {* definice bootstrap frameworku *}
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+          integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+    {* definice bootstrap-tabulky *}
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
+          integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.17.1/dist/bootstrap-table.min.css">
+
+    {* css pro galerii*}
+    <link rel="stylesheet" type="text/css" href="{$basePath}/fotoGalerie/galerie/css/lightbox.min.css">
+
+    <style>
+        @media only screen and (max-width: 600px) {
+            #textV {
+                font-size: 40px;
+            }
+
+            #textM {
+                font-size: 25px;
+            }
+        }
+    </style>
+</head> <!-- head konec -->
+
+<body><!-- body začátek -->
+<!-- Horní navigační menu začátek -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark" id="mainNav">
+    <div class="container">
+        <a class="navbar-brand js-scroll-trigger" n:href="Homepage:default">Harmonikář Tom</a>
+
+        {* na mobilu se objeví tlačítko s hamburger menu *}
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+                aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- menu s odkazy začátek -->
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link js-scroll-trigger" n:href="Vystoupeni:vystoupeni">Vystoupení</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link js-scroll-trigger" n:href="Homepage:omne">O mně</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link js-scroll-trigger" n:href="Repertoar:repertoar">Repertoár</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link js-scroll-trigger" n:href="Fotogalerie:fotogalerie">Fotogalerie</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link js-scroll-trigger" n:href="Homepage:videa">Videa</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link js-scroll-trigger" n:href="Kontakt:kontakt">Kontakt</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link js-scroll-trigger" n:href="Prihlaseni:prihlaseni">Přihlásit</a>
+                </li>
+            </ul>
+        </div><!-- menu s odkazy konec -->
+
+    </div>
+</nav><!-- Horní navigační menu konec -->
+
+<!-- Hlavička webu (součást html body) začátek -->
+<header style="background-image: url('{$basePath}/img/pozadi.jpg'); background-repeat: no-repeat;  background-size: 100% 100%; height:300px; ">
+    <div class="container text-right">
+        <br/><br/><br/>
+        <p class="lead">
+
+        <div style="font-family: Georgia; font-size: 50px; color: white; -webkit-text-stroke: 1px black;"><b id="textV">Harmonikář
+                Tom</b></div>
+        <div style="font-family: Georgia; font-size: 33px; color: white; -webkit-text-stroke: 1px black;"><b id="textM">
+                Živá hudba k
+                poslechu i tanci</b>
+        </div>
+        </p>
+    </div>
+</header> <!-- Hlavička webovky konec -->
+
+
+{include content}
+
+<!-- Patička webu začátek -->
+<footer class="py-3 bg-dark">
+    <div class="container">
+        <p class="m-0 text-center text-white">Copyright &copy; Martin30.com
+            {php
+                $rok = date("Y");
+                echo $rok;
+            }
+        </p>
+    </div>
+</footer> <!-- Patička webu konec -->
+
+<!-- Sekce javascriptu začátek -->
+{block scripts}
+    {* javascript pro nette forms *}
+    <script src="https://nette.github.io/resources/js/3/netteForms.min.js"></script>
+
+    {* javascript pro knihovnu jquery *}
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+            integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+            crossorigin="anonymous"></script>
+
+    {* javascript pro popper.js, jedná se o pozicování, které vyžaduje bootstrap framework *}
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+            integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+            crossorigin="anonymous"></script>
+
+    {* javascript pro bootstrap framework *}
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+            integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+            crossorigin="anonymous"></script>
+
+    {*definice javascriptu ajax a bootstrap-table.com pro výpis z databáze do bootstrap tabulky *}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+            crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/bootstrap-table@1.17.1/dist/bootstrap-table.min.js"></script>
+    {* čeština do bootstrap tabulky *}
+    <script src="https://unpkg.com/bootstrap-table@1.17.1/dist/locale/bootstrap-table-cs-CZ.js"></script>
+    <script src="https://unpkg.com/bootstrap-table@1.17.1/dist/locale/bootstrap-table-cs-CZ.min.js"></script>
+
+    {* javascript pro fotogalerii *}
+    <script type="text/javascript" src="{$basePath}/fotoGalerie/galerie/js/lightbox-plus-jquery.min.js"></script>
+{/block} <!-- Sekce javascriptu konec -->
+
+</body><!-- body konec -->
+</html>

@@ -1,0 +1,189 @@
+{block content}
+<style>
+    #textKontakt {
+        font-size: 22px;
+        text-align: center;
+    }
+
+    #kontaktMobil {
+        display: none;
+    }
+
+    @media only screen and (max-width: 700px) {
+        #textKontakt {
+            font-size: 16px;
+        }
+
+        #frameKontakt {
+            display: none;
+        }
+
+        #kontaktMobil {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    }
+</style>
+<br/>
+<div class="container" style="min-height: 450pt">
+
+    <div class="row" id="frameKontakt"> <!-- kontakt začátek -->
+        <div class="col-lg-6 mx-auto">
+            <iframe style="border:none" src="https://frame.mapy.cz/s/fugopekaga" width="500" height="355"
+                    frameborder="0" class="embed-responsive-item"></iframe>
+        </div>
+
+        <div class="col-lg-6 mx-auto">
+            <h2 style="font-family: Georgia;">Kontaktovat mě můžete osobně těmito způsoby:</h2> <br/>
+            <div class="row row-cols-3">
+
+                <div class="text-right">
+                    <img src="{$basePath}/img/lokace.svg">
+                </div>
+                <div>
+                    &nbsp;&nbsp; <b>Tomáš  </b>
+                    <ul>
+                        <li>
+                            Policka 349
+                        </li>
+                        <li>
+                            875 21 Policka
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="row row-cols-3">
+                <div class="text-right">
+                    <img src="{$basePath}/img/telefon.svg">
+                </div>
+                <div>
+                    &nbsp;&nbsp; <b>Tel.: 725 987 088 </b>
+                </div>
+            </div>
+            <br/>
+
+            <div class="row row-cols-3">
+                <div class="text-right">
+                    <img src="{$basePath}/img/mail.svg">
+                </div>
+                <div>
+                    <b>tomas@seznam.cz</b>
+                </div>
+            </div>
+            <br/>
+
+            <div class="row row-cols-3">
+                <div class="text-right">
+                    <img src="{$basePath}/img/info.svg">
+                </div>
+                <div>
+                    &nbsp;&nbsp; <b>IČO 8754557</b> </br>
+                    &nbsp;&nbsp; <b>DIČO 87544</b>
+                </div>
+            </div>
+        </div>
+    </div> <!-- kontakt konec -->
+
+    <div class="row" id="kontaktMobil"> <!-- kontakt mobil začátek -->
+        <div class="col">
+            <h2 style="font-family: Georgia; text-align: center">Kontaktovat mě můžete osobně těmito způsoby:</h2> <br/>
+            <div class="row">
+                <div>
+                    <img src="{$basePath}/img/lokace.svg">
+                </div>
+                <div>
+                    &nbsp;&nbsp; <b>Tomáš  </b>
+                    <ul>
+                        <li>
+                            Policka 741
+                        </li>
+                        <li>
+                            875 21 Policka
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="row">
+                <div>
+                    <img src="{$basePath}/img/telefon.svg">
+                </div>
+                <div>
+                    &nbsp;&nbsp; <b>Tel.: 787 987 475 </b>
+                </div>
+            </div>
+            <br/>
+
+            <div class="row">
+                <div>
+                    <img src="{$basePath}/img/mail.svg">
+                </div>
+                <div>
+                    &nbsp;&nbsp; <b>tomas@seznam.cz</b>
+                </div>
+            </div>
+            <br/>
+
+            <div class="row">
+                <div>
+                    <img src="{$basePath}/img/info.svg">
+                </div>
+                <div>
+                    &nbsp;&nbsp; <b>IČO 5875</b> </br>
+                    &nbsp;&nbsp; <b>DIČO 98547</b>
+                </div>
+            </div>
+        </div>
+    </div> <!-- kontakt mobil konec -->
+
+
+    <br/>
+    <hr/>
+    <br/>
+    <h2 class="text-center" style="font-family: Georgia;">Vzkazy a připomínky</h2>
+
+    <div class="row"> <!-- kontaktní formulář začátek -->
+        <div class="col-lg-10 mx-auto">
+            <div class="card mt-2 mx-auto p-4 bg-light">
+                <div class="card-body bg-light">
+                    <div class="container">
+                        <form n:name="commentForm">
+                            <div class="controls">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group"><label n:name="jmeno"><b>Jméno: *</b></label>
+                                            <input n:name="jmeno" class="form-control"></div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group"><label n:name="prijmeni"><b>Příjmení: *</b></label>
+                                            <input n:name="prijmeni" class="form-control"></div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group "><label n:name="email"><b>E-mail: *</b></label>
+                                            <input n:name="email" class="form-control"></div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group"><label n:name="content"><b>Vzkaz: *</b></label>
+                                            <textarea n:name="content" class="form-control" rows="4"></textarea></div>
+                                    </div>
+                                    <div class="col-md-12"><input n:name="send"
+                                                class="btn btn-primary btn-send pt-2 btn-block "></div>
+                                </div>
+                                <br/> <b>*</b>Značí povinné pole!
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div><!-- kontaktní formulář konec -->
+
+</div>
+<br/>
+

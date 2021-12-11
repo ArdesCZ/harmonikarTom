@@ -1,0 +1,176 @@
+{block content}
+
+    <style>
+        #viditelne {
+            display: none;
+        }
+
+        @media only screen and (max-width: 600px) {
+            #viditelne {
+                display: inherit;
+            }
+        }
+    </style>
+
+    <div class="container" style="min-height: 450pt">
+        <br/>
+        <div class="text-center">
+            <h2 style="font-family: Georgia;">Výpis písní</h2>
+        </div>
+
+        {foreach $flashes as $flash}
+            <div class="flash {$flash->type} font-weight-bold text-success text-center"><h5
+                        class="font-weight-bold">{$flash->message}</h5></div>
+        {/foreach}
+
+        <div>
+            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#vlozeniModal">Vložit novou
+                píseň
+            </button>
+        </div>
+
+        <!-- Modal (vyskakující okno) pro vložení písně -->
+        <div class="modal fade" id="vlozeniModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+             aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel"><strong>Vložení nové písně</strong></h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body"> <!-- jako tělo Modalu se použije formulář -->
+                        <form n:name="formVlozRepertoar" class="form">
+                            <div class="form-group">
+                                <label n:name="nazev">Název písně*</label>
+                                <input n:name="nazev" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label n:name="zanr">Žánr</label>
+                                <input n:name="zanr" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label n:name="tanec">Tanec</label>
+                                <input n:name="tanec" class="form-control">
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Zavřít</button>
+                                <button n:name="odelat" class="btn btn-success">Vložit novou píseň</button>
+                            </div>
+                            <br/> <b>*</b>Značí povinné pole!
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>  <!-- /Modal vlož  -->
+
+        <!-- Modal (vyskakující okno) pro úpravu zvolené písně -->
+        <div class="modal fade" id="upravModalRepertoar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+             aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel"><strong>Úprava vybrané písně</strong></h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body"> <!-- jako tělo Modalu se použije formulář -->
+                        <form n:name="formUpravRepertoar">
+                            <div class="form-group">
+                                <input n:name="idPisneU" type="hidden" id="idPisneU" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label n:name="nazevU">Název písně*</label>
+                                <input n:name="nazevU" type="text" id="nazevU" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label n:name="zanrU">Žánr</label>
+                                <input n:name="zanrU" type="text" id="zanrU" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label n:name="tanecU">Tanec</label>
+                                <input n:name="tanecU" type="text" id="tanecU" class="form-control">
+                            </div>
+
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Zavřít</button>
+                                <button n:name="odeslatU" class="btn btn-primary">Upravit stávající
+                                    píseň
+                                </button>
+                            </div>
+                        </form>
+                        <br/> <b>*</b>Značí povinné pole!
+                    </div>
+                </div>
+            </div>
+        </div><!-- /Modal uprav  -->
+
+
+        <!-- Modal (vyskakující okno) pro smazání zvoleného písně -->
+        <div class="modal" tabindex="-1" id="smazModalRepertoar" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title"><strong>Smazání vybrané písně</strong></h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body text-center">
+                        <p><h4 class="text-danger">Varování,</h4> opravdu si přeješ smazat tuto píseň?</p>
+                    </div>
+
+                    <form n:name="formVymazRepertoar">
+                        <div class="form-group">
+                            <input n:name="idPisneV" type="hidden" id="idPisneV" class="form-control">
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Zavřít</button>
+                            <button n:name="odeslatV" class="btn btn-danger">Smazat píseň</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div><!-- /Modal smaž  -->
+
+        <table class="table table-bordered table-hover" data-toggle="table" data-pagination="true"
+               data-search="true" data-page-size="15" style="font-size: 21px;">
+            <thead class="thead-light">
+            <tr>
+                <th style="width: 20%" scope="col" data-sortable="true">Název písně</th>
+                <th style="width: 10%" scope="col" data-sortable="true">Žánr</th>
+                <th style="width: 10%" scope="col" data-sortable="true">Tanec</th>
+                <th style="width: 10%" scope="col">Operace s<br id="viditelne"/> tablukou</th>
+            </tr>
+            </thead>
+            <tbody>
+
+            {foreach $adminSekce as $skladba}
+                <tr id="{$skladba->idPisne}">
+                    <td data-target="nazev">{$skladba->nazev}</td>
+                    <td data-target="zanr">{$skladba->zanr}</td>
+                    <td data-target="tanec">{$skladba->tanec}</td>
+                    <td>
+                        <button type="button" class="btn btn-primary" data-toggle="modal"
+                                data-target="#upravModalRepertoar" id="odeslatU" data-id="{$skladba->idPisne}"
+                                data-role="updateRepertoar"><i class="fas fa-edit"></i></button>
+                        <br id="viditelne"/>
+                        <button type="button" class="btn btn-danger" data-id="{$skladba->idPisne}"
+                                data-role="deleteRepertoar" data-toggle="modal" data-target="#smazModalRepertoar"
+                                id="odeslatV"><i
+                                    class="far fa-trash-alt"></i></button>
+                    </td>
+                </tr>
+            {/foreach}
+
+            </tbody>
+            <tfoot class="thead-light">
+            </tfoot>
+        </table>
+
+        <br/><br/>
+    </div>
+{/block}

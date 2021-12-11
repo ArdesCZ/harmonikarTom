@@ -1,0 +1,654 @@
+{block content}
+    <style>
+        #viditelne {
+            display: none;
+        }
+
+        @media only screen and (max-width: 700px) {
+            #viditelne {
+                display: inherit;
+            }
+
+            .hidden {
+                display: none;
+            }
+        }
+    </style>
+
+    <div class="container" style="min-height: 450pt">
+        <br/>
+        <div class="text-center">
+            <h2 style="font-family: Georgia;">Výpis vystoupení</h2>
+        </div>
+
+        {foreach $flashes as $flash}
+            <div class="flash {$flash->type} font-weight-bold text-success text-center"><h5
+                        class="font-weight-bold">{$flash->message}</h5></div>
+        {/foreach}
+
+
+        <div class="row">
+            <div class="col-md-4">
+                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#vlozeniVystoupeniModal">
+                    Vložit nové
+                    vystoupení
+                </button>
+            </div>
+            <div class="viditelne"><br/></div>
+            <div class="col-md-4 ml-auto">
+                <button type="button" class="btn btn-info" data-toggle="modal" data-target="#vlozeniRezervaceModal">
+                    Vložit novou
+                    rezervaci
+                </button>
+            </div>
+        </div>
+
+        <br/>
+
+        <!-- Modal (vyskakující okno) pro vložení vystoupení -->
+        <div class="modal fade" id="vlozeniVystoupeniModal" tabindex="-1" role="dialog"
+             aria-labelledby="exampleModalLabel"
+             aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel"><strong>Vložení nového vystoupení</strong></h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body"> <!-- jako tělo Modalu se použije formulář -->
+                        <form n:name="formVlozVystoupeni" class="form">
+                            <div class="form-group">
+                                <label n:name="rok">Rok*</label>
+                                <input n:name="rok" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label n:name="datum">Datum</label>
+                                <input n:name="datum" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label n:name="misto">Místo*</label>
+                                <input n:name="misto" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label n:name="cas">Čas</label>
+                                <input n:name="cas" class="form-control">
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Zavřít</button>
+                                <button n:name="odelat" class="btn btn-success">Vložit nové vystoupení</button>
+                            </div>
+                            <br/> <b>*</b>Značí povinné pole!
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>  <!-- /Modal vlož  -->
+
+        <!-- Modal (vyskakující okno) pro úpravu zvoleného vystoupení -->
+        <div class="modal fade" id="upravModalVystoupeni" tabindex="-1" role="dialog"
+             aria-labelledby="exampleModalLabel"
+             aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel"><strong>Úprava vybraného vystoupení</strong></h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body"> <!-- jako tělo Modalu se použije formulář -->
+                        <form n:name="formUpravVystoupeni">
+                            <div class="form-group">
+                                <input n:name="idVystoupeniU" type="hidden" id="idVystoupeniU" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label n:name="rokU">Rok*</label>
+                                <input n:name="rokU" type="text" id="rokU" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label n:name="datumU">Datum</label>
+                                <input n:name="datumU" type="text" id="datumU" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label n:name=mistoU>Místo*</label>
+                                <input n:name=mistoU type="text" id="mistoU" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label n:name="casU">Čas</label>
+                                <input n:name="casU" type="text" id="casU" class="form-control">
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Zavřít</button>
+                                <button n:name="odeslatU" class="btn btn-primary">Upravit stávající
+                                    vystoupení
+                                </button>
+                            </div>
+                            <br/> <b>*</b>Značí povinné pole!
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Modal (vyskakující okno) pro smazání zvoleného vystoupení -->
+        <div class="modal" tabindex="-1" id="smazModalVystoupeni" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title"><strong>Smazání vybraného vystoupení</strong></h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body text-center">
+                        <p><h4 class="text-danger">Varování,</h4> opravdu si přeješ smazat toto vystoupení?</p>
+                    </div>
+
+                    <form n:name="formVymazVystoupeni">
+                        <div class="form-group">
+                            <input n:name="idVystoupeniV" type="hidden" id="idVystoupeniV" class="form-control">
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Zavřít</button>
+                            <button n:name="odeslatV" class="btn btn-danger">Smazat vystoupení</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div><!-- /Modal smaž  -->
+
+
+        <!-- Modal (vyskakující okno) pro vložení rezervace -->
+        <div class="modal fade" id="vlozeniRezervaceModal" tabindex="-1" role="dialog"
+             aria-labelledby="exampleModalLabel"
+             aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel"><strong>Vložení nové rezervace</strong></h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body"> <!-- jako tělo Modalu se použije formulář -->
+                        <form n:name="formVlozRezervace" class="form">
+                            <div class="form-group">
+                                <label n:name="rok">Rok*</label>
+                                <input n:name="rok" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label n:name="od">Od*</label>
+                                <input n:name="od" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label n:name="do">Do</label>
+                                <input n:name="do" class="form-control">
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Zavřít</button>
+                                <button n:name="odeslat" class="btn btn-info">Vložit novou rezervaci</button>
+                            </div>
+                            <br/> <b>*</b>Značí povinné pole!
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>  <!-- /Modal vlož  -->
+
+
+        <!-- Modal (vyskakující okno) pro úpravu zvolené rezervace -->
+        <div class="modal fade" id="upravModalRezervace" tabindex="-1" role="dialog"
+             aria-labelledby="exampleModalLabel"
+             aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel"><strong>Úprava vybrané rezervace</strong></h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body"> <!-- jako tělo Modalu se použije formulář -->
+                        <form n:name="formUpravRezervace">
+                            <div class="form-group">
+                                <input n:name="idRezervaceU" type="hidden" id="idRezervaceU" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label n:name="rokU">Rok*</label>
+                                <input n:name="rokU" type="text" id="rokUr" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label n:name="odU">Od*</label>
+                                <input n:name="odU" type="text" id="odU" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label n:name=doU>Do</label>
+                                <input n:name=doU type="text" id="doU" class="form-control">
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Zavřít</button>
+                                <button n:name="odeslatU" class="btn btn-info">Upravit stávající
+                                    rezervaci
+                                </button>
+                            </div>
+                            <br/> <b>*</b>Značí povinné pole!
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Modal (vyskakující okno) pro smazání zvolené rezervace -->
+        <div class="modal" tabindex="-1" id="smazModalRezervace" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title"><strong>Smazání vybrané rezervace</strong></h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body text-center">
+                        <p><h4 class="text-danger">Varování,</h4> opravdu si přeješ smazat tuto rezervaci?</p>
+                    </div>
+
+                    <form n:name="formVymazRezervace">
+                        <div class="form-group">
+                            <input n:name="idRezervaceV" type="hidden" id="idRezervaceV" class="form-control">
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Zavřít</button>
+                            <button n:name="odeslatV" class="btn btn-danger">Smazat rezervaci</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div><!-- /Modal smaž  -->
+
+
+        {if ($tokenV2 == true)}
+            <span class="text-left">
+                <h3 style="font-family: Georgia;">Rok {$rokL2} </h3>
+        </span>
+            {* tabulka na výpis a úpravu rezervace (času kdy se nehraje) aktuálního roku +2 *}
+            {if ($tokenR2 == true)}
+                <span class="text-left">
+                <h4 style="font-family: Georgia;">Rezervace </h4>
+            </span>
+
+                <table class="table table-bordered table-hover" data-toggle="table" data-pagination="true"
+                       data-search="true"
+                       data-page-size="15" style="font-size: 21px;">
+                    <thead class="thead-light">
+                    <tr>
+                        <th class="hidden" style="width: 20%" scope="col">Rok</th>
+                        <th style="width: 40%" scope="col">Od</th>
+                        <th style="width: 40%" scope="col">Do</th>
+                        <th style="width: 10%" scope="col">Operace s<br id="viditelne"/> tablukou</th>
+                    </tr>
+                    </tr>
+                    </thead>
+                    <tbody>
+
+                    {foreach $rezervaceL2 as $rezervace}
+                        <tr id="{$rezervace->idRezervace}">
+                            <td class="hidden" data-target="rokr">{$rezervace->rok}</td>
+                            <td data-target="od">{$rezervace->od}</td>
+                            <td data-target="do">{$rezervace->do}</td>
+                            <td>
+                                <button type="button" class="btn btn-info" data-toggle="modal"
+                                        data-target="#upravModalRezervace" id="odeslatU"
+                                        data-id="{$rezervace->idRezervace}"
+                                        data-role="updateRezervace"><i class="fas fa-edit"></i></button>
+                                <br id="viditelne"/>
+                                <button type="button" class="btn btn-danger" data-id="{$rezervace->idRezervace}"
+                                        data-role="deleteRezervace" data-toggle="modal"
+                                        data-target="#smazModalRezervace"
+                                        id="odeslatReV"><i
+                                            class="far fa-trash-alt"></i></button>
+                            </td>
+                        </tr>
+                    {/foreach}
+                    </tbody>
+                    <tfoot class="thead-light">
+                    {* patička tabulky musí být prázdná, nebo by se nezobrazil spodek tabulky *}
+                    </tfoot>
+                </table>
+
+                <br/>
+            {/if}
+
+            {* tabulka na výpis a úpravu vystoupení roku aktuálního roku +2 *}
+            <span class="text-left">
+                <h4 style="font-family: Georgia;">Vystoupení </h4>
+            </span>
+
+            <table class="table table-bordered table-hover" data-toggle="table" data-pagination="true"
+                   data-search="true" data-page-size="15" style="font-size: 21px;">
+                <thead class="thead-light">
+                <tr>
+                    <th class="hidden" style="width: 10%" scope="col">Rok</th>
+                    <th style="width: 10%" scope="col">Datum</th>
+                    <th style="width: 30%" scope="col">Místo</th>
+                    <th style="width: 10%" scope="col">Čas</th>
+                    <th style="width: 10%" scope="col">Operace s<br id="viditelne"/> tablukou</th>
+                </tr>
+                </thead>
+                <tbody>
+
+                {foreach $vystoupeniL2 as $konzert}
+                    <tr id="{$konzert->idVystoupeni}">
+                        <td class="hidden" data-target="rok">{$konzert->rok}</td>
+                        <td data-target="datum">{$konzert->datum}</td>
+                        <td data-target="misto">{$konzert->misto}</td>
+                        <td data-target="cas">{$konzert->cas}</td>
+                        <td>
+                            <button type="button" class="btn btn-primary" data-toggle="modal"
+                                    data-target="#upravModalVystoupeni" id="odeslatU" data-id="{$konzert->idVystoupeni}"
+                                    data-role="updateVystoupeni"><i class="fas fa-edit"></i></button>
+                            <br id="viditelne"/>
+                            <button type="button" class="btn btn-danger" data-id="{$konzert->idVystoupeni}"
+                                    data-role="deleteVystoupeni" data-toggle="modal" data-target="#smazModalVystoupeni"
+                                    id="odeslatV"><i
+                                        class="far fa-trash-alt"></i></button>
+                        </td>
+                    </tr>
+                {/foreach}
+
+                </tbody>
+                <tfoot class="thead-light">
+                </tfoot>
+            </table>
+            <br/>
+        {/if}
+
+
+        {if ($tokenV1 == true)}
+            <span class="text-left">
+                <h3 style="font-family: Georgia;">Rok {$rokL1} </h3>
+            </span>
+
+            {if ($tokenR1 == true)}
+                <span class="text-left">
+                <h4 style="font-family: Georgia;">Rezervace </h4>
+            </span>
+
+                {* tabulka na výpis a úpravu rezervace roku aktulaní +1 *}
+                <table class="table table-bordered table-hover" data-toggle="table" data-pagination="true"
+                       data-search="true"
+                       data-page-size="15" style="font-size: 21px;">
+                    <thead class="thead-light">
+                    <tr>
+                        <th class="hidden" style="width: 20%" scope="col">Rok</th>
+                        <th style="width: 40%" scope="col">Od</th>
+                        <th style="width: 40%" scope="col">Do</th>
+                        <th style="width: 10%" scope="col">Operace s<br id="viditelne"/> tablukou</th>
+                    </tr>
+                    </tr>
+                    </thead>
+                    <tbody>
+
+                    {foreach $rezervaceL1 as $rezervace}
+                        <tr id="{$rezervace->idRezervace}">
+                            <td class="hidden" data-target="rokr">{$rezervace->rok}</td>
+                            <td data-target="od">{$rezervace->od}</td>
+                            <td data-target="do">{$rezervace->do}</td>
+                            <td>
+                                <button type="button" class="btn btn-info" data-toggle="modal"
+                                        data-target="#upravModalRezervace" id="odeslatU"
+                                        data-id="{$rezervace->idRezervace}"
+                                        data-role="updateRezervace"><i class="fas fa-edit"></i></button>
+                                <br id="viditelne"/>
+                                <button type="button" class="btn btn-danger" data-id="{$rezervace->idRezervace}"
+                                        data-role="deleteRezervace" data-toggle="modal"
+                                        data-target="#smazModalRezervace"
+                                        id="odeslatReV"><i
+                                            class="far fa-trash-alt"></i></button>
+                            </td>
+                        </tr>
+                    {/foreach}
+                    </tbody>
+                    <tfoot class="thead-light">
+                    {* patička tabulky musí být prázdná, nebo by se nezobrazil spodek tabulky *}
+                    </tfoot>
+                </table>
+
+                <br/>
+            {/if}
+
+            <span class="text-left">
+                <h4 style="font-family: Georgia;">Vystoupení </h4>
+            </span>
+
+            <table class="table table-bordered table-hover" data-toggle="table" data-pagination="true"
+                   data-search="true" data-page-size="15" style="font-size: 21px;">
+                <thead class="thead-light">
+                <tr>
+                    <th class="hidden" style="width: 10%" scope="col">Rok</th>
+                    <th style="width: 10%" scope="col">Datum</th>
+                    <th style="width: 30%" scope="col">Místo</th>
+                    <th style="width: 10%" scope="col">Čas</th>
+                    <th style="width: 10%" scope="col">Operace s<br id="viditelne"/> tablukou</th>
+                </tr>
+                </thead>
+                <tbody>
+
+                {foreach $vystoupeniL1 as $konzert}
+                    <tr id="{$konzert->idVystoupeni}">
+                        <td class="hidden" data-target="rok">{$konzert->rok}</td>
+                        <td data-target="datum">{$konzert->datum}</td>
+                        <td data-target="misto">{$konzert->misto}</td>
+                        <td data-target="cas">{$konzert->cas}</td>
+                        <td>
+                            <button type="button" class="btn btn-primary" data-toggle="modal"
+                                    data-target="#upravModalVystoupeni" id="odeslatU" data-id="{$konzert->idVystoupeni}"
+                                    data-role="updateVystoupeni"><i class="fas fa-edit"></i></button>
+                            <br id="viditelne"/>
+                            <button type="button" class="btn btn-danger" data-id="{$konzert->idVystoupeni}"
+                                    data-role="deleteVystoupeni" data-toggle="modal" data-target="#smazModalVystoupeni"
+                                    id="odeslatV"><i
+                                        class="far fa-trash-alt"></i></button>
+                        </td>
+                    </tr>
+                {/foreach}
+
+                </tbody>
+                <tfoot class="thead-light">
+                </tfoot>
+            </table>
+            <br/>
+        {/if}
+
+
+        <span class="text-left">
+                <h3 style="font-family: Georgia;">Rok {$rokL} </h3>
+        </span>
+
+        <span class="text-left">
+                <h4 style="font-family: Georgia;">Rezervace </h4>
+            </span>
+
+        <table class="table table-bordered table-hover" data-toggle="table" data-pagination="true"
+               data-search="true"
+               data-page-size="15" style="font-size: 21px;">
+            <thead class="thead-light">
+            <tr>
+                <th class="hidden" style="width: 10%" scope="col">Rok</th>
+                <th style="width: 40%" scope="col">Od</th>
+                <th style="width: 40%" scope="col">Do</th>
+                <th style="width: 5%" scope="col">Operace s<br id="viditelne"/> tablukou</th>
+            </tr>
+            </thead>
+            <tbody>
+
+            {foreach $rezervaceL as $rezervace}
+                <tr id="{$rezervace->idRezervace}">
+                    <td class="hidden" data-target="rokr">{$rezervace->rok}</td>
+                    <td data-target="od">{$rezervace->od}</td>
+                    <td data-target="do">{$rezervace->do}</td>
+                    <td>
+                        <button type="button" class="btn btn-info" data-toggle="modal"
+                                data-target="#upravModalRezervace" id="odeslatU" data-id="{$rezervace->idRezervace}"
+                                data-role="updateRezervace"><i class="fas fa-edit"></i></button>
+                        <br id="viditelne"/>
+                        <button type="button" class="btn btn-danger" data-id="{$rezervace->idRezervace}"
+                                data-role="deleteRezervace" data-toggle="modal" data-target="#smazModalRezervace"
+                                id="odeslatV"><i
+                                    class="far fa-trash-alt"></i></button>
+                    </td>
+                </tr>
+            {/foreach}
+            </tbody>
+            <tfoot class="thead-light">
+            {* patička tabulky musí být prázdná, nebo by se nezobrazil spodek tabulky *}
+            </tfoot>
+        </table>
+
+        <br/>
+        <span class="text-left">
+                <h4 style="font-family: Georgia;">Vystoupení </h4>
+            </span>
+
+        <table class="table table-bordered table-hover" data-toggle="table" data-pagination="true"
+               data-search="true" data-page-size="15" style="font-size: 21px;">
+            <thead class="thead-light">
+            <tr>
+                <th class="hidden" style="width: 10%" scope="col">Rok</th>
+                <th style="width: 10%" scope="col">Datum</th>
+                <th style="width: 30%" scope="col">Místo</th>
+                <th style="width: 10%" scope="col">Čas</th>
+                <th style="width: 10%" scope="col">Operace s<br id="viditelne"/> tablukou</th>
+            </tr>
+            </thead>
+            <tbody>
+
+            {foreach $vystoupeniL as $konzert}
+                <tr id="{$konzert->idVystoupeni}">
+                    <td class="hidden" data-target="rok">{$konzert->rok}</td>
+                    <td data-target="datum">{$konzert->datum}</td>
+                    <td data-target="misto">{$konzert->misto}</td>
+                    <td data-target="cas">{$konzert->cas}</td>
+                    <td>
+                        <button type="button" class="btn btn-primary" data-toggle="modal"
+                                data-target="#upravModalVystoupeni" id="odeslatU" data-id="{$konzert->idVystoupeni}"
+                                data-role="updateVystoupeni"><i class="fas fa-edit"></i></button>
+                        <br id="viditelne"/>
+                        <button type="button" class="btn btn-danger" data-id="{$konzert->idVystoupeni}"
+                                data-role="deleteVystoupeni" data-toggle="modal" data-target="#smazModalVystoupeni"
+                                id="odeslatV"><i
+                                    class="far fa-trash-alt"></i></button>
+                    </td>
+                </tr>
+            {/foreach}
+
+            </tbody>
+            <tfoot class="thead-light">
+            </tfoot>
+        </table>
+
+        {if ($rokL > 2020)}
+            <br/>
+            <span class="text-left">
+                <h3 style="font-family: Georgia;">Rok {$rokLm1} </h3>
+        </span>
+
+            {if ($tokenRm1 == true)}
+                <span class="text-left">
+                <h4 style="font-family: Georgia;">Rezervace </h4>
+            </span>
+
+                {* tabulka na výpis a úpravu rezervace roku aktulaní +1 *}
+                <table class="table table-bordered table-hover" data-toggle="table" data-pagination="true"
+                       data-search="true"
+                       data-page-size="15" style="font-size: 21px;">
+                    <thead class="thead-light">
+                    <tr>
+                        <th class="hidden" style="width: 20%" scope="col">Rok</th>
+                        <th style="width: 40%" scope="col">Od</th>
+                        <th style="width: 40%" scope="col">Do</th>
+                        <th style="width: 10%" scope="col">Operace s<br id="viditelne"/> tablukou</th>
+                    </tr>
+                    </tr>
+                    </thead>
+                    <tbody>
+
+                    {foreach $rezervaceLm1 as $rezervace}
+                        <tr id="{$rezervace->idRezervace}">
+                            <td class="hidden" data-target="rokr">{$rezervace->rok}</td>
+                            <td data-target="od">{$rezervace->od}</td>
+                            <td data-target="do">{$rezervace->do}</td>
+                            <td>
+                                <button type="button" class="btn btn-info" data-toggle="modal"
+                                        data-target="#upravModalRezervace" id="odeslatU"
+                                        data-id="{$rezervace->idRezervace}"
+                                        data-role="updateRezervace"><i class="fas fa-edit"></i></button>
+                                <br id="viditelne"/>
+                                <button type="button" class="btn btn-danger" data-id="{$rezervace->idRezervace}"
+                                        data-role="deleteRezervace" data-toggle="modal"
+                                        data-target="#smazModalRezervace"
+                                        id="odeslatReV"><i
+                                            class="far fa-trash-alt"></i></button>
+                            </td>
+                        </tr>
+                    {/foreach}
+                    </tbody>
+                    <tfoot class="thead-light">
+                    {* patička tabulky musí být prázdná, nebo by se nezobrazil spodek tabulky *}
+                    </tfoot>
+                </table>
+
+                <br/>
+            {/if}
+
+            <span class="text-left">
+                <h4 style="font-family: Georgia;">Vystoupení </h4>
+            </span>
+
+            <table class="table table-bordered table-hover" data-toggle="table" data-pagination="true"
+                   data-search="true" data-page-size="15" style="font-size: 21px;">
+                <thead class="thead-light">
+                <tr>
+                    <th class="hidden" style="width: 10%" scope="col">Rok</th>
+                    <th style="width: 10%" scope="col">Datum</th>
+                    <th style="width: 30%" scope="col">Místo</th>
+                    <th style="width: 10%" scope="col">Čas</th>
+                    <th style="width: 10%" scope="col">Operace s<br id="viditelne"/> tablukou</th>
+                </tr>
+                </thead>
+                <tbody>
+
+                {foreach $vystoupeniLm1 as $konzert}
+                    <tr id="{$konzert->idVystoupeni}">
+                        <td class="hidden" data-target="rok">{$konzert->rok}</td>
+                        <td data-target="datum">{$konzert->datum}</td>
+                        <td data-target="misto">{$konzert->misto}</td>
+                        <td data-target="cas">{$konzert->cas}</td>
+                        <td>
+                            <button type="button" class="btn btn-primary" data-toggle="modal"
+                                    data-target="#upravModalVystoupeni" id="odeslatU" data-id="{$konzert->idVystoupeni}"
+                                    data-role="updateVystoupeni"><i class="fas fa-edit"></i></button>
+                            <br id="viditelne"/>
+                            <button type="button" class="btn btn-danger" data-id="{$konzert->idVystoupeni}"
+                                    data-role="deleteVystoupeni" data-toggle="modal" data-target="#smazModalVystoupeni"
+                                    id="odeslatV"><i
+                                        class="far fa-trash-alt"></i></button>
+                        </td>
+                    </tr>
+                {/foreach}
+
+                </tbody>
+                <tfoot class="thead-light">
+                </tfoot>
+            </table>
+        {/if}
+
+
+        <br/><br/>
+    </div>
+{/block}
+

@@ -1,0 +1,40 @@
+{block content}
+    <div class="container" style="min-height: 450pt">
+        <br/>
+        <div class="text-center">
+            <h2 style="font-family: Georgia;">Výpis písní</h2>
+        </div>
+
+        <table class="table table-bordered table-hover" data-toggle="table" data-pagination="true"
+               data-search="true"
+               data-page-size="15" style="font-size: 21px;">
+            <thead class="thead-light">
+            <tr>
+
+                <th style="width: 20%" scope="col" data-sortable="true">Název písně</th>
+                <th style="width: 10%" scope="col" data-sortable="true">Žánr</th>
+                <th style="width: 10%" scope="col">Tanec</th>
+            </tr>
+            </thead>
+            <tbody>
+
+            {foreach $repertoar as $pisne}
+                <tr>
+                    <td>{$pisne->nazev}</td>
+                    <td>{$pisne->zanr}</td>
+                    <td>{$pisne->tanec}</td>
+                </tr>
+            {/foreach}
+
+            </tbody>
+            <tfoot class="thead-light">
+            {* patička tabulky musí být prázdná, nebo by se nezobrazil spodek tabulky *}
+            </tfoot>
+        </table>
+        <br/>
+        <h5 style="font-family: Georgia;"> Repertoár se nadále doplňuje a rozšiřuje.</h5>
+        <br/>
+    </div>
+
+{/block}
+
